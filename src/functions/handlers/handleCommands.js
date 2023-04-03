@@ -21,15 +21,19 @@ module.exports = (client) => {
       }
     }
 
+    // clientID (bot ID) which is from discord developer portal
     const clientId = "1079497991200718989";
-    const guildId = "890946950759874631";
 
-    const rest = new REST({ version: "9" }).setToken(process.env.token);
+    // below are the guildIDs of my servers, to get the guildID. User needs to have dev mode on and right click server and look at bottom for 'Copy ID'
+    const myServerId = "890946950759874631"; // for my personal server
+    const coolCatsId = "449076992923402250"; // for cool cats server
+
+    const rest = new REST({ version: "10" }).setToken(process.env.token);
 
     try {
       console.log("Started refreshing application (/) commands.");
 
-      await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+      await rest.put(Routes.applicationGuildCommands(clientId, coolCatsId), {
         body: client.commandArray,
       });
 
